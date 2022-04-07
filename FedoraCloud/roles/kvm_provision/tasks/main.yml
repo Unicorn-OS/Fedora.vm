@@ -19,13 +19,13 @@
   - name: Download base image
     get_url:
       url: "{{ base_image_url }}"
-      dest: "/tmp/{{ base_image_name }}"
+      dest: "/home/{{ansible_user}}/.uni/vm/base-img/{{ base_image_name }}"
       checksum: "sha256:{{ base_image_sha }}"
 
   - name: Copy base image to libvirt directory
     copy:
       dest: "{{ libvirt_pool_dir }}/{{ vm_name }}.qcow2"
-      src: "/tmp/{{ base_image_name }}"
+      src: "/home/{{ansible_user}}/.uni/vm/base-img/{{ base_image_name }}"
       force: no
       remote_src: yes
       mode: 0660
